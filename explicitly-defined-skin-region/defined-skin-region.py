@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 import numpy as np
 
-file1 = 'Skin.txt'
-file2 = 'NonSkin.txt'
+# Initialization 
+file1 = '../UCI-Database/Skin.txt'
+file2 = '../UCI-Database/NonSkin.txt'
 Scount = 0
 Ncount = 0
 TP = 0
 FP = 0
+
 with open(file1) as SkinFile:
 	for line in SkinFile:
 		[b, g, r, label] = line.split()
@@ -34,8 +36,13 @@ with open(file2) as NonSkinFile:
 
 #print(label)
 #print(TP)
-print ('TP = %d' %(TP) )
-print ('count = %d' %(Scount) )
-print ('FP = %d' %(FP) )
-print ('count = %d' %(Ncount) )
+print ('Actual skin pixels = %d' %(Scount) )
+print ('Actual non skin Pixels = %d' %(Ncount) )
 
+print ('TP = %d' %(TP) )
+TPrate = (TP/Scount)*100 
+print ('TP Rate = %f %%' %(TPrate) )
+
+print ('FP = %d' %(FP) )
+FPrate = (FP/Ncount)*100
+print ('FP Rate = %f %% ' % (FPrate) )
