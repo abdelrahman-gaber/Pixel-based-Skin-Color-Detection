@@ -11,10 +11,17 @@ file1 = '../UCI-Database/Skin.txt'
 file2 = '../UCI-Database/NonSkin.txt'
 
 n_classes = 4;
+
 cov_type = 'full'
 sk = []
+nonsk = []
 FullModel = []
 Out =[]
+TP = 0;
+TN = 0;
+FP = 0;
+FN = 0;
+sk = []
 
 # Function to convert from RGP to YCbCr
 def RGB2YCrCb(r, g, b):
@@ -58,13 +65,56 @@ print(w)
 for i in range(n_classes):
 	FullModel.append(multivariate_normal(mean[i], cov[i]))
 
+
+## Test 
+threshold = 0.000001
+
+for data in SkinTest:
+	GMMOut = 0;
+	for i in range(n_classes):
+		GMMOut += w[i]*FullModel[i].pdf(data)
+
+	if (GMMOut > threshold):
+		TP +=1;
+	else:
+		FN +=1;
+
+print('TP = %d' %(TP))
+print('TP Rate = %f %% ' %( (TP/SkinTest.shape[0])*100 )  )
+print('FN Rate = %f %% ' %( (FN/SkinTest.shape[0])*100 )  )
+
+
+with open(file2) as NonSkinFile:
+	for line in NonSkinFile:
+		[b, g, r, label] = line.split()
+		B = int(b)
+		G= int(g)
+		R = int(r)
+		[Cb, Cr] = RGB2YCrCb(R, G, B)
+		nonsk.append([Cb, Cr])
+
+NonSkinTest = np.array(nonsk) # convert the list "a" to numpy array "c"
+
+for data in NonSkinTest:
+	GMMOut = 0;
+	for i in range(n_classes):
+		GMMOut += w[i]*FullModel[i].pdf(data)
+
+	if (GMMOut > threshold):
+		FP +=1;
+	else:
+		TN +=1;
+
+print('FP = %d' %(FP))
+print('FP Rate = %f %% ' %( (FP/NonSkinTest.shape[0])*100 )  )
+print('TN Rate = %f %% ' %( (TN/NonSkinTest.shape[0])*100 )  )
+
+
+
 # Plot the Separate Gaussians with the estimated parameters 
 x, y = np.mgrid[60:150:1, 135:180:1]
 pos = np.empty(x.shape + (2,))
 pos[:, :, 0] = x; pos[:, :, 1] = y
-
-print(x.shape)
-print(y.shape)
 
 GMM = np.zeros(x.shape)
 for i in range(n_classes):

@@ -37,8 +37,8 @@ ColorArray = np.array(sk) # convert the list "a" to numpy array "c"
 [l, w] = ColorArray.shape
 #print(l)
 
-SkinTrain = ColorArray[0:int(l/2), : ] # Training data
-SkinTest = ColorArray[int(l/2): , : ]
+SkinTest  = ColorArray[0:int(l/2), : ] # Training data
+SkinTrain = ColorArray[int(l/2): , : ]
 print('Number of skin training data = %d' %(SkinTrain.shape[0]) )
 print('Number of skin Testing data = %d' %(SkinTest.shape[0]) )
 
@@ -60,13 +60,8 @@ rv = multivariate_normal(Cmean, CovMatrix)
 allout = rv.pdf(pos)
 plt.contourf(x, y, allout)
 
-#out = rv.pdf([115,150])
-#summ = np.sum(allout)
-#print(out)
-#print(summ)
 
-#print(z[1,:])
-
+## Test 
 threshold = 0.0001
 for i in SkinTest:
 	if (rv.pdf(i) > threshold):
@@ -100,7 +95,7 @@ print('FP = %d' %(FP))
 print('FP Rate = %f %% ' %( (FP/NonSkinTest.shape[0])*100 )  )
 print('TN Rate = %f %% ' %( (TN/NonSkinTest.shape[0])*100 )  )
 
-#plt.show()
+plt.show()
 
 # source of YCbCr conversion:
 # https://en.wikipedia.org/wiki/YCbCr#JPEG_conversion
