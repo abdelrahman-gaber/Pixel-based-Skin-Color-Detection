@@ -37,8 +37,8 @@ ColorArray = np.array(sk) # convert the list "a" to numpy array "c"
 [l, w] = ColorArray.shape
 #print(l)
 
-SkinTest  = ColorArray[0:int(l/2), : ] # Training data
-SkinTrain = ColorArray[int(l/2): , : ]
+SkinTest  = ColorArray[0:int(l/2), : ]
+SkinTrain = ColorArray[int(l/2): , : ]  # Training data
 print('Number of skin training data = %d' %(SkinTrain.shape[0]) )
 print('Number of skin Testing data = %d' %(SkinTest.shape[0]) )
 
@@ -59,7 +59,6 @@ pos[:, :, 0] = x; pos[:, :, 1] = y
 rv = multivariate_normal(Cmean, CovMatrix)
 allout = rv.pdf(pos)
 plt.contourf(x, y, allout)
-
 
 ## Test 
 threshold = 0.0001

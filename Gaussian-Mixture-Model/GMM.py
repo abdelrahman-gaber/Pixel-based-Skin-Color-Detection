@@ -42,10 +42,15 @@ with open(file1) as SkinFile:
 
 SkinColorArray = np.array(sk) # convert the list "sk" to numpy array "SkinColorArray"
 [l, w] = SkinColorArray.shape
-SkinTest = SkinColorArray[0:int(l/2), : ] # Training data
-SkinTrain = SkinColorArray[int(l/2): , : ]
+SkinTest = SkinColorArray[0:int(l/2), : ] 
+SkinTrain = SkinColorArray[int(l/2): , : ] # Training data
 print('Number of skin training data = %d' %(SkinTrain.shape[0]) )
 print('Number of skin Testing data = %d' %(SkinTest.shape[0]) )
+
+plt.scatter(SkinColorArray[:,0], SkinColorArray[:,1])
+#plt.plot(SkinColorArray[:,0], SkinColorArray[:,1])
+plt.show()
+
 
 Gmm = GaussianMixture(n_components=n_classes,
                    covariance_type=cov_type, max_iter=80,  n_init=10, random_state=0)
@@ -80,9 +85,12 @@ for data in SkinTest:
 		FN +=1;
 
 print('TP = %d' %(TP))
+print('FN = %d' %(FN))
+
 print('TP Rate = %f %% ' %( (TP/SkinTest.shape[0])*100 )  )
 print('FN Rate = %f %% ' %( (FN/SkinTest.shape[0])*100 )  )
 
+print('Number of skin test = %d ' %( SkinTest.shape[0] ) )
 
 with open(file2) as NonSkinFile:
 	for line in NonSkinFile:
@@ -95,6 +103,11 @@ with open(file2) as NonSkinFile:
 
 NonSkinTest = np.array(nonsk) # convert the list "a" to numpy array "c"
 
+
+plt.scatter(NonSkinTest[:,0], NonSkinTest[:,1])
+#plt.plot(SkinColorArray[:,0], SkinColorArray[:,1])
+plt.show()
+
 for data in NonSkinTest:
 	GMMOut = 0;
 	for i in range(n_classes):
@@ -106,10 +119,11 @@ for data in NonSkinTest:
 		TN +=1;
 
 print('FP = %d' %(FP))
+print('TN = %d' %(TN))
 print('FP Rate = %f %% ' %( (FP/NonSkinTest.shape[0])*100 )  )
 print('TN Rate = %f %% ' %( (TN/NonSkinTest.shape[0])*100 )  )
 
-
+print('Number of Nonskin test = %d ' %( NonSkinTest.shape[0] ) )
 
 # Plot the Separate Gaussians with the estimated parameters 
 x, y = np.mgrid[60:150:1, 135:180:1]
@@ -129,3 +143,9 @@ for i in range(n_classes):
 plt.contourf(x, y, GMM)
 
 plt.show()
+
+
+
+# Scikit-Learn:
+# http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html#sklearn.mixture.GaussianMixture
+# http://scikit-learn.org/stable/modules/mixture.html
