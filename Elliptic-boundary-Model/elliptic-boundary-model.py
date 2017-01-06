@@ -79,9 +79,6 @@ print('Lambda = \n' + str(Lambda))
 
 LambdaInv = inv(Lambda)
 
-#c = RGB2YCrCb(197,197,157)
-#c = RGB2YCrCb(240, 180, 70)
-#c = RGB2YCrCb(74,85,123)
 
 Threshold = 1.0;
 
@@ -101,60 +98,16 @@ for c in NonSkinColorArray:
 	zT = z.T 
 	EllipticModel = zT.dot(LambdaInv).dot(z)
 	#print(EllipticModel)
-	if (EllipticModel > Threshold):
+	if (EllipticModel < Threshold):
 		FP += 1
 	else:
 		TN +=1
 
-
-print('TP = %d' %(TP))
+#print('TP = %d' %(TP))
 print('TP Rate = %f %% ' %( (TP/SkinColorArray.shape[0])*100 )  )
-print('FN Rate = %f %% ' %( (FN/SkinColorArray.shape[0])*100 )  )
+#print('FN Rate = %f %% ' %( (FN/SkinColorArray.shape[0])*100 )  )
 
-print('FP = %d' %(FP))
+#print('FP = %d' %(FP))
 print('FP Rate = %f %% ' %( (FP/NonSkinColorArray.shape[0])*100 )  )
-print('TN Rate = %f %% ' %( (TN/NonSkinColorArray.shape[0])*100 )  )
+#print('TN Rate = %f %% ' %( (TN/NonSkinColorArray.shape[0])*100 )  )
 
-
-# Calculate the final elliptical model
-#z = c - phi
-#zT = z.T 
-#EllipticModel = zT.dot(LambdaInv).dot(z)
-#print(EllipticModel)
-
-
-
-
-#x, y = np.mgrid[60:150:1, 135:180:1]
-#print(x.shape)
-#pos = np.empty(x.shape + (2,))
-#pos[:, :, 0] = x; pos[:, :, 1] = y
-#rv = multivariate_normal(Cmean, CovMatrix)
-#allout = rv.pdf(pos)
-#print(pos)
-#print(pos.shape)
-
-#print(LambdaInv.shape)
-#print(zT.shape)
-#print(z.shape)
-
-#tmp = np.dot(LambdaInv, z)
-#EllipticModel = y.T * tmp 
-
-#plt.contourf(x, y, EllipticModel)
-#plt.show()
-'''
-y = SkinColorArray - phi
-tmp = np.dot(LambdaInv, y)
-EllipticModel = y.T * tmp 
-
-Cmean = SkinTrain.mean(axis = 0) # Calculate the mean along all Cb, Cr
-print('Mean = ' + str(Cmean) )
-
-x = SkinTrain - Cmean;
-[M, N] = x.shape
-
-CovMatrix = (1/M)*np.dot(x.T, x) 
-print(CovMatrix)
-#print(CovMatrix.shape)
-'''

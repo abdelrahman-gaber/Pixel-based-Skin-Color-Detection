@@ -47,9 +47,9 @@ SkinTrain = SkinColorArray[int(l/2): , : ] # Training data
 print('Number of skin training data = %d' %(SkinTrain.shape[0]) )
 print('Number of skin Testing data = %d' %(SkinTest.shape[0]) )
 
-plt.scatter(SkinColorArray[:,0], SkinColorArray[:,1])
+#plt.scatter(SkinColorArray[:,0], SkinColorArray[:,1])
 #plt.plot(SkinColorArray[:,0], SkinColorArray[:,1])
-plt.show()
+#plt.show()
 
 
 Gmm = GaussianMixture(n_components=n_classes,
@@ -84,8 +84,8 @@ for data in SkinTest:
 	else:
 		FN +=1;
 
-print('TP = %d' %(TP))
-print('FN = %d' %(FN))
+#print('TP = %d' %(TP))
+#print('FN = %d' %(FN))
 
 print('TP Rate = %f %% ' %( (TP/SkinTest.shape[0])*100 )  )
 print('FN Rate = %f %% ' %( (FN/SkinTest.shape[0])*100 )  )
@@ -104,9 +104,9 @@ with open(file2) as NonSkinFile:
 NonSkinTest = np.array(nonsk) # convert the list "a" to numpy array "c"
 
 
-plt.scatter(NonSkinTest[:,0], NonSkinTest[:,1])
+#plt.scatter(NonSkinTest[:,0], NonSkinTest[:,1])
 #plt.plot(SkinColorArray[:,0], SkinColorArray[:,1])
-plt.show()
+#plt.show()
 
 for data in NonSkinTest:
 	GMMOut = 0;
