@@ -2,13 +2,10 @@
 \BOOKMARK [2][-]{subsection.1.1}{UCI skin segmentation data set}{section.1}% 2
 \BOOKMARK [2][-]{subsection.1.2}{Dataset visualization}{section.1}% 3
 \BOOKMARK [2][-]{subsection.1.3}{How to run ?}{section.1}% 4
-\BOOKMARK [1][-]{section.2}{Non-parametric skin distribution modeling}{}% 5
-\BOOKMARK [2][-]{subsection.2.1}{Explicitly defined skin region}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.2}{Bayes Classifier}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{Parametric skin distribution modeling}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{Single Gaussian model }{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.2}{Gaussian Mixture Model \(GMM\)}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.3}{Elliptic boundary model}{section.3}% 11
-\BOOKMARK [1][-]{subsection.3.3}{Appendices}{}% 12
-\BOOKMARK [1][-]{appendix.A}{Normalization code}{}% 13
-\BOOKMARK [1][-]{appendix.B}{PCA Code}{}% 14
+\BOOKMARK [1][-]{section.2}{Explicitly defined skin region}{}% 5
+\BOOKMARK [1][-]{section.3}{Non-parametric skin distribution modeling}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Bayes Classifier}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Parametric skin distribution modeling}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Single Gaussian model }{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Gaussian Mixture Model \(GMM\)}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Elliptic boundary model}{section.4}% 11
